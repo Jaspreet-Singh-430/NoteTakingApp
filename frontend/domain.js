@@ -1,1 +1,1 @@
-export const domain="http://localhost:3005";
+export const domain = "https://notetakingapp-r76y.onrender.com";
