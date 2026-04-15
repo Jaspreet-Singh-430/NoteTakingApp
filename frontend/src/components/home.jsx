@@ -77,6 +77,7 @@ export default function Home() {
     }
     const addNote= async(title,description)=>{
            try {
+            setCurrentNote(null)
             console.log(domain)
             const response=await axios.post(`${domain}/api/note/create-note`,{
                 title,description
