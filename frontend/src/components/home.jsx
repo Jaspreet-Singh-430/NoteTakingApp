@@ -6,7 +6,11 @@ import NoteModal from "./UI/noteModal.jsx"
 import {domain} from "../../domain.js"
 import {toast} from "react-toastify"
 import NoteCard from "./UI/NoteCard.jsx"
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../Context/contextProvider.jsx';
 export default function Home() {
+    const {user}=useAuth()
+    const navigate=useNavigate()
     const [notes,setNotes]=useState([])
     const [currentNote,setCurrentNote]=useState(null)
     const [query,setQuery]=useState('')
@@ -14,6 +18,12 @@ export default function Home() {
     useEffect(()=>{
         getNotes()
     },[])
+    useEffect(()=>{
+        if(!user)
+        {
+            navigate("/login")
+        }
+    },[user])
     useEffect(()=>{
         setFilteredNotes(
             notes.filter((note)=>(
