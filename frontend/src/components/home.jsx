@@ -77,7 +77,7 @@ export default function Home() {
     }
     const addNote= async(title,description)=>{
            try {
-            setCurrentNote(null)
+            // setCurrentNote(null)
             console.log(domain)
             const response=await axios.post(`${domain}/api/note/create-note`,{
                 title,description
@@ -121,6 +121,10 @@ export default function Home() {
         console.log(err.message)
         }
     }
+    const AddNewNote=()=>{
+        setCurrentNote(null)
+        setModelOpen(true)
+    }
     return (
         <div className="bg-gray-100 min-h-screen">
             <Navbar setQuery={setQuery}/>
@@ -130,7 +134,7 @@ export default function Home() {
                     <NoteCard key={note._id} note={note} onEdit={onEdit} deleteNode={deleteNode}/>
                 )):<p>No Notes</p>}
             </div>
-            <button onClick={()=>setModelOpen(true)} className="bg-teal-500 cursor-pointer text-2xl text-white font-bold p-5 rounded-full fixed right-4 bottom-4">+</button>
+            <button onClick={()=>AddNewNote()} className="bg-teal-500 cursor-pointer text-2xl text-white font-bold p-5 rounded-full fixed right-4 bottom-4">+</button>
             {isModelOpen && <NoteModal currentNote={currentNote} editNote={editNote} addNote={addNote} closeModel={closeModel}/>}
         </div>
     )
